@@ -1,0 +1,51 @@
+
+<app-title title="Control Flow" withShadow></app-title>
+
+<section class="grid grid-cols-1 md:grid-cols-2 gap-3">
+  <div class="bg-white rounded shadow p-10">
+    <h2 class="text-2xl font-bold mb-5">if: {{showContent()}}</h2>
+    <button (click)="toggleContent()" class="p-2 bg-blue-500 rounded text-white">Click me!</button>
+    @if(showContent()){
+      <p>Hola mundo</p>
+    }@else {
+      <p>Adios mundo</p>
+    }
+
+  </div>
+  <div class="bg-white rounded shadow p-10">
+    <h2 class="text-2xl font-bold mb-5">{{grade()}}</h2>
+    @switch (grade()) {
+      @case ('A'){
+        <p>Arriba de 90</p>
+      }
+      @case ('B'){
+        <p>Arriba de 80</p>
+      }
+      @default{
+        <p>Reprobado</p>}
+    }
+  </div>
+  <div class="bg-white rounded shadow p-10">
+    <ul>
+      @for (framework of frameworks(); track framework; let i = $index, count = $count, even = $even, odd = $odd) {
+        <li [class]="{
+          'bg-red-100': even,
+          'bg-blue-100': odd
+        }">{{i+1}} / {{count}}- {{framework}}</li>
+
+      }
+    </ul>
+
+
+  </div>
+  <div class="bg-white rounded shadow p-10">
+    <ul>
+      @for (framework of frameworks2(); track $index) {
+        <li>{{framework}}</li>
+      }@empty {
+        <li>No hay frameworks</li>}
+    </ul>
+  </div>
+</section>
+
+
